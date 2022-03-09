@@ -11,7 +11,7 @@ After 5 rounds, show the user's and computer's final score and the winner
 
 function computerPlayArray() {
   console.log("computerPlay");
-  const choices = ["rock", "paper", "scissors"];
+  const choices = ["Rock", "Paper", "Scissors"];
   const randomChoice = Math.floor(Math.random() * choices.length);
 
   return choices[randomChoice];
@@ -22,12 +22,59 @@ function computerPlay() {
   const randomChoice = Math.floor(Math.random() * numberOfChoices);
 
   if (randomChoice === 0) {
-    return "rock";
+    return "Rock";
   } else if (randomChoice === 1) {
-    return "paper";
+    return "Paper";
   } else if (randomChoice === 2) {
-    return "scissors";
+    return "Scissors";
   }
 }
 
+function capitalize(str) {
+  str = str.toLowerCase();
+}
+
+function roundPlay(playerSelection, computerSelection) {
+  let result;
+  if (playerSelection === "Rock") {
+    if (computerSelection === "Rock") {
+      result = "Tie";
+    } else if (computerSelection === "Paper") {
+      result = "Lose";
+    } else if (computerSelection === "Scissors") {
+      result = "Win";
+      // const winningChoice = playerSelection;
+      // const losingChoice =
+    }
+  } else if (playerSelection === "Paper") {
+    if (computerSelection === "Rock") {
+      result = "Win";
+    } else if (computerSelection === "Paper") {
+      result = "Tie";
+    } else if (computerSelection === "Scissors") {
+      result = "Lose";
+    }
+  } else if (playerSelection === "Scissors") {
+    if (computerSelection === "Rock") {
+      result = "Lose";
+    } else if (computerSelection === "Paper") {
+      result = "Win";
+    } else if (computerSelection === "Scissors") {
+      result = "Tie";
+    }
+  }
+
+  let resultString;
+
+  if (result === "Win") {
+    resultString = `You ${result}! ${playerSelection} beats ${computerSelection}`;
+  } else if (result === "Lose") {
+    resultString = `You ${result}! ${computerSelection} beats ${playerSelection}`;
+  } else if (result === "Tie") {
+    resultString = `You ${result}! ${playerSelection} ties with ${computerSelection}`;
+  }
+  return resultString;
+}
+
 console.log(computerPlay());
+console.log(roundPlay());
