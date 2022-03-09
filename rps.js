@@ -30,11 +30,12 @@ function computerPlay() {
   }
 }
 
-function capitalize(str) {
-  str = str.toLowerCase();
+function capitalize(str = "") {
+  return str[0].toUpperCase() + str.slice(1);
 }
 
-function roundPlay(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
+  playerSelection = capitalize(playerSelection);
   let result;
   if (playerSelection === "Rock") {
     if (computerSelection === "Rock") {
@@ -43,8 +44,6 @@ function roundPlay(playerSelection, computerSelection) {
       result = "Lose";
     } else if (computerSelection === "Scissors") {
       result = "Win";
-      // const winningChoice = playerSelection;
-      // const losingChoice =
     }
   } else if (playerSelection === "Paper") {
     if (computerSelection === "Rock") {
@@ -76,5 +75,6 @@ function roundPlay(playerSelection, computerSelection) {
   return resultString;
 }
 
-console.log(computerPlay());
-console.log(roundPlay());
+const playerSelection = "rock";
+const computerSelection = computerPlay();
+console.log(playRound(playerSelection, computerSelection));
