@@ -1,7 +1,4 @@
-console.log("Rock Paper Scissors!");
-
 /*
-
 When the user inputs "rock", "paper", or "scissors"
 Get the computer's choice of "rock", "paper", or "scissors"
 Compare the user's choice against the computer's choice
@@ -63,27 +60,30 @@ function playRound(playerSelection, computerSelection) {
     }
   }
 
-  let resultString;
-
-  if (result === "Win") {
-    resultString = `You ${result}! ${playerSelection} beats ${computerSelection}`;
-  } else if (result === "Lose") {
-    resultString = `You ${result}! ${computerSelection} beats ${playerSelection}`;
-  } else if (result === "Tie") {
-    resultString = `You ${result}! ${playerSelection} ties with ${computerSelection}`;
-  }
-  return resultString;
+  return result;
 }
 
-function game(playerSelection, computerSelection) {
+function game() {
+  let wins = 0;
+
   for (let i = 0; i < 5; i++) {
-    console.log(playRound(playerSelection, computerSelection));
+    const playerSelection = prompt(
+      "Welcome to Rock, Paper, Scissors\nWhat is your choice?",
+      "Rock"
+    );
+    const computerSelection = computerPlay();
+    let result = playRound(playerSelection, computerSelection);
+
+    let resultString;
+    if (result === "Win") {
+      resultString = `You ${result}! ${playerSelection} beats ${computerSelection}`;
+    } else if (result === "Lose") {
+      resultString = `You ${result}! ${computerSelection} beats ${playerSelection}`;
+    } else if (result === "Tie") {
+      resultString = `You ${result}! ${playerSelection} ties with ${computerSelection}`;
+    }
+    console.log(resultString);
   }
 }
 
-const playerSelection = prompt(
-  "Welcome to Rock, Paper, Scissors\nWhat is your choice?",
-  "Rock"
-);
-const computerSelection = computerPlay();
-game(playerSelection, computerSelection);
+game();
