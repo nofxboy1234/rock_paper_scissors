@@ -64,9 +64,11 @@ function playRound(playerSelection, computerSelection) {
 }
 
 function game() {
-  let wins = 0;
+  let rounds = 5;
+  let playerWins = 0;
+  let computerWins = 0;
 
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < rounds; i++) {
     const playerSelection = prompt(
       "Welcome to Rock, Paper, Scissors\nWhat is your choice?",
       "Rock"
@@ -77,12 +79,25 @@ function game() {
     let resultString;
     if (result === "Win") {
       resultString = `You ${result}! ${playerSelection} beats ${computerSelection}`;
+      playerWins += 1;
     } else if (result === "Lose") {
       resultString = `You ${result}! ${computerSelection} beats ${playerSelection}`;
+      computerWins += 1;
     } else if (result === "Tie") {
       resultString = `You ${result}! ${playerSelection} ties with ${computerSelection}`;
     }
     console.log(resultString);
+  }
+
+  console.log(
+    `Final results: Player wins - ${playerWins}, Computer wins - ${computerWins}`
+  );
+  if (playerWins > computerWins) {
+    console.log("You win!");
+  } else if (computerWins > playerWins) {
+    console.log("Computer wins!");
+  } else if (playerWins === computerWins) {
+    console.log("It's a tie!");
   }
 }
 
