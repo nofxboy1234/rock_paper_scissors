@@ -104,13 +104,16 @@ function game() {
 
     let resultString;
     if (result === "Win") {
-      resultString = `You ${result}! ${playerSelection} beats ${computerSelection}`;
+      resultString = `You ${result}! ${playerSelection} beats 
+              ${computerSelection}`;
       playerWins += 1;
     } else if (result === "Lose") {
-      resultString = `You ${result}! ${computerSelection} beats ${playerSelection}`;
+      resultString = `You ${result}! ${computerSelection} beats 
+              ${playerSelection}`;
       computerWins += 1;
     } else if (result === "Tie") {
-      resultString = `You ${result}! ${playerSelection} ties with ${computerSelection}`;
+      resultString = `You ${result}! ${playerSelection} ties with 
+              ${computerSelection}`;
       ties += 1;
     }
     console.log(
@@ -118,7 +121,8 @@ function game() {
     );
     console.log(resultString);
     console.log(
-      `Player wins - ${playerWins}, Computer wins - ${computerWins}, Ties - ${ties}`
+      `Player wins - ${playerWins}, Computer wins - ${computerWins}, 
+              Ties - ${ties}`
     );
     console.log(`${rounds - (i + 1)} rounds left`);
   }
