@@ -14,19 +14,6 @@ function computerPlayArray() {
   return choices[randomChoice];
 }
 
-function computerPlay() {
-  let numberOfChoices = 3;
-  const randomChoice = Math.floor(Math.random() * numberOfChoices);
-
-  if (randomChoice === 0) {
-    return "Rock";
-  } else if (randomChoice === 1) {
-    return "Paper";
-  } else if (randomChoice === 2) {
-    return "Scissors";
-  }
-}
-
 function capitalize(str = "") {
   return str[0].toUpperCase() + str.toLowerCase().slice(1);
 }
@@ -99,7 +86,7 @@ function game() {
       }
     }
 
-    const computerSelection = computerPlay();
+    const computerSelection = computerPlayArray();
     let result = playRound(playerSelection, computerSelection);
 
     let resultString;
