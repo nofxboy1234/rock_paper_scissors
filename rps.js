@@ -11,7 +11,7 @@ function playRound(playerSelection) {
   console.log(`Computer chose ${computerSelection}`);
 
   let result;
-  if (playerSelection === 'rock') {
+  if (playerSelection === 'player-rock') {
     if (computerSelection === 'rock') {
       result = 'You tied this round';
     } else if (computerSelection === 'paper') {
@@ -21,7 +21,7 @@ function playRound(playerSelection) {
       result = 'You won this round';
       playerScore += 1;
     }
-  } else if (playerSelection === 'paper') {
+  } else if (playerSelection === 'player-paper') {
     if (computerSelection === 'rock') {
       result = 'You won this round';
       playerScore += 1;
@@ -31,7 +31,7 @@ function playRound(playerSelection) {
       result = 'You lost this round';
       computerScore += 1;
     }
-  } else if (playerSelection === 'scissors') {
+  } else if (playerSelection === 'player-scissors') {
     if (computerSelection === 'rock') {
       result = 'You lost this round';
       computerScore += 1;
@@ -50,26 +50,26 @@ function playRound(playerSelection) {
 
 function checkForWinner() {
   if (playerScore === 5) {
-    buttons.forEach((element) => {
+    playerButtons.forEach((element) => {
       element.disabled = true;
     });
 
     setTimeout(() => {
       alert('You won the game!');
-      buttons.forEach((element) => {
+      playerButtons.forEach((element) => {
         element.disabled = false;
       });
       resetScores();
     }, 1000);
   }
   if (computerScore === 5) {
-    buttons.forEach((element) => {
+    playerButtons.forEach((element) => {
       element.disabled = true;
     });
 
     setTimeout(() => {
       alert('You lost the game!');
-      buttons.forEach((element) => {
+      playerButtons.forEach((element) => {
         element.disabled = false;
       });
       resetScores();
@@ -86,8 +86,8 @@ function resetScores() {
   computerScore = 0;
 }
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
+const playerButtons = document.querySelectorAll('.playerButton');
+playerButtons.forEach((button) => {
   button.addEventListener('click', () => {
     playRound(button.id);
     checkForWinner();
