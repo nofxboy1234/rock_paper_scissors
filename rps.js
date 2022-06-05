@@ -123,8 +123,19 @@ function game() {
   }
 }
 
+function alertFunction(e) {
+  console.log(e);
+  alert("rock");
+}
+
 let rockButton = document.querySelector("#rock");
 rockButton.style.cssText = "color: red;";
+// rockButton.addEventListener("click", alertFunction);
+rockButton.addEventListener("click", function (e) {
+  // console.log(e);
+  console.log(e.target.style.color);
+  // console.log((e.target.style.background = "blue"));
+});
 
 const paperButton = document.querySelector("#paper");
 // paperButton.style.color = "green";
