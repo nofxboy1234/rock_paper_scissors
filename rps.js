@@ -7,8 +7,7 @@ After 5 rounds, show the user's and computer's final score and the winner
 */
 
 function computerPlayArray() {
-  console.log('computerPlay');
-  const choices = ['Rock', 'Paper', 'Scissors'];
+  const choices = ['rock', 'paper', 'scissors'];
   const randomChoice = Math.floor(Math.random() * choices.length);
 
   return choices[randomChoice];
@@ -23,37 +22,39 @@ function playRound2(e) {
 }
 
 function playRound(playerSelection) {
-  console.log(playerSelection);
-  return;
+  console.log(`You chose ${playerSelection}`);
+  const computerSelection = computerPlayArray();
+  console.log(`Computer chose ${computerSelection}`);
 
   let result;
-  if (playerSelection === 'Rock') {
-    if (computerSelection === 'Rock') {
-      result = 'Tie';
-    } else if (computerSelection === 'Paper') {
-      result = 'Lose';
-    } else if (computerSelection === 'Scissors') {
-      result = 'Win';
+  if (playerSelection === 'rock') {
+    if (computerSelection === 'rock') {
+      result = 'You tied this round';
+    } else if (computerSelection === 'paper') {
+      result = 'You lost this round';
+    } else if (computerSelection === 'scissors') {
+      result = 'You won this round';
     }
-  } else if (playerSelection === 'Paper') {
-    if (computerSelection === 'Rock') {
-      result = 'Win';
-    } else if (computerSelection === 'Paper') {
-      result = 'Tie';
-    } else if (computerSelection === 'Scissors') {
-      result = 'Lose';
+  } else if (playerSelection === 'paper') {
+    if (computerSelection === 'rock') {
+      result = 'You won this round';
+    } else if (computerSelection === 'paper') {
+      result = 'You tied this round';
+    } else if (computerSelection === 'scissors') {
+      result = 'You lost this round';
     }
-  } else if (playerSelection === 'Scissors') {
-    if (computerSelection === 'Rock') {
-      result = 'Lose';
-    } else if (computerSelection === 'Paper') {
-      result = 'Win';
-    } else if (computerSelection === 'Scissors') {
-      result = 'Tie';
+  } else if (playerSelection === 'scissors') {
+    if (computerSelection === 'rock') {
+      result = 'You lost this round';
+    } else if (computerSelection === 'paper') {
+      result = 'You won this round';
+    } else if (computerSelection === 'scissors') {
+      result = 'You tied this round';
     }
   }
 
-  return result;
+  const results = document.querySelector('#results');
+  results.textContent = result;
 }
 
 function isPlayerSelectionValid(playerSelection) {
@@ -138,21 +139,4 @@ function alertFunction(e) {
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', () => playRound(button.id));
-  // button.addEventListener('click', playRound2(button));
-  // button.addEventListener('click', () => alert(button.id));
-  // button.addEventListener('click', () => console.log(button.id));
-  // button.addEventListener('click', (e) => console.log(e.target.id));
-  // button.addEventListener('click', function (e) {
-  //   console.log(e);
-  // });
 });
-
-// const paperButton = document.querySelector("#paper");
-// // paperButton.style.color = "green";
-// paperButton.style.cssText = "color: green";
-
-// const scissorsButton = document.querySelector("#scissors");
-// // scissorsButton.style.color = "blue";
-// scissorsButton.style.cssText = "color: blue";
-
-// game();
