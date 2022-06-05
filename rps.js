@@ -53,7 +53,6 @@ function playRound(playerSelection) {
     }
   }
 
-  const results = document.querySelector('#results');
   results.textContent = result;
 }
 
@@ -140,3 +139,5 @@ const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', () => playRound(button.id));
 });
+
+const results = document.querySelector('#results');
