@@ -22,8 +22,8 @@ function playRound2(e) {
   console.log(e.id);
 }
 
-function playRound(e) {
-  console.log(e.target.id);
+function playRound(playerSelection) {
+  console.log(playerSelection);
   return;
 
   let result;
@@ -137,7 +137,7 @@ function alertFunction(e) {
 
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-  button.addEventListener('click', playRound);
+  button.addEventListener('click', () => playRound(button.id));
   // button.addEventListener('click', playRound2(button));
   // button.addEventListener('click', () => alert(button.id));
   // button.addEventListener('click', () => console.log(button.id));
