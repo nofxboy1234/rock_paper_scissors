@@ -141,6 +141,7 @@ buttons.forEach((button) => {
   // button.addEventListener('click', playRound2(button));
   // button.addEventListener('click', () => alert(button.id));
   // button.addEventListener('click', () => console.log(button.id));
+  // button.addEventListener('click', (e) => console.log(e.target.id));
   // button.addEventListener('click', function (e) {
   //   console.log(e);
   // });
