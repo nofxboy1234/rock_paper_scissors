@@ -123,4 +123,15 @@ function game() {
   }
 }
 
-game();
+let rockButton = document.querySelector("#rock");
+rockButton.style.cssText = "color: red;";
+
+const paperButton = document.querySelector("#paper");
+// paperButton.style.color = "green";
+paperButton.style.cssText = "color: green";
+
+const scissorsButton = document.querySelector("#scissors");
+// scissorsButton.style.color = "blue";
+scissorsButton.style.cssText = "color: blue";
+
+// game();
