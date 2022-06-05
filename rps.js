@@ -18,6 +18,10 @@ function capitalize(str = '') {
   return str[0].toUpperCase() + str.toLowerCase().slice(1);
 }
 
+function playRound2(e) {
+  console.log(e.id);
+}
+
 function playRound(e) {
   console.log(e.target.id);
   return;
@@ -134,6 +138,7 @@ function alertFunction(e) {
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
   button.addEventListener('click', playRound);
+  // button.addEventListener('click', playRound2(button));
   // button.addEventListener('click', () => alert(button.id));
   // button.addEventListener('click', () => console.log(button.id));
   // button.addEventListener('click', function (e) {
