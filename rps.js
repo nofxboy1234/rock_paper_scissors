@@ -32,28 +32,36 @@ function playRound(playerSelection) {
       result = 'You tied this round';
     } else if (computerSelection === 'paper') {
       result = 'You lost this round';
+      computerScore += 1;
     } else if (computerSelection === 'scissors') {
       result = 'You won this round';
+      playerScore += 1;
     }
   } else if (playerSelection === 'paper') {
     if (computerSelection === 'rock') {
       result = 'You won this round';
+      playerScore += 1;
     } else if (computerSelection === 'paper') {
       result = 'You tied this round';
     } else if (computerSelection === 'scissors') {
       result = 'You lost this round';
+      computerScore += 1;
     }
   } else if (playerSelection === 'scissors') {
     if (computerSelection === 'rock') {
       result = 'You lost this round';
+      computerScore += 1;
     } else if (computerSelection === 'paper') {
       result = 'You won this round';
+      playerScore += 1;
     } else if (computerSelection === 'scissors') {
       result = 'You tied this round';
     }
   }
 
-  results.textContent = result;
+  roundResults.textContent = result;
+  playerScoreDiv.textContent = playerScore;
+  computerScoreDiv.textContent = computerScore;
 }
 
 function isPlayerSelectionValid(playerSelection) {
@@ -135,9 +143,26 @@ function alertFunction(e) {
   alert('rock');
 }
 
+function checkForWinner() {
+  if (playerScore === 5) {
+    alert('You won!');
+  }
+  if (computerScore === 5) {
+    alert('You lost!');
+  }
+}
+
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
-  button.addEventListener('click', () => playRound(button.id));
+  button.addEventListener('click', () => {
+    playRound(button.id);
+    checkForWinner();
+  });
 });
 
-const results = document.querySelector('#results');
+const roundResults = document.querySelector('#results');
+const playerScoreDiv = document.querySelector('#player-score');
+const computerScoreDiv = document.querySelector('#computer-score');
+
+let playerScore = 0;
+let computerScore = 0;
