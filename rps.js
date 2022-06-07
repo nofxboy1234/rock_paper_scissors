@@ -49,33 +49,31 @@ function playRound(playerSelection) {
 }
 
 function checkForWinner() {
+  if (playerScore !== 5 && computerScore !== 5) {
+    return;
+  }
+
+  let gameResultText;
   if (playerScore === 5) {
-    playerButtons.forEach((element) => {
-      element.disabled = true;
-    });
-
-    setTimeout(() => {
-      alert('You won the game!');
-      playerButtons.forEach((element) => {
-        element.disabled = false;
-      });
-      setupGame();
-    }, 1000);
+    gameResultText = 'You won the game!';
   }
-
   if (computerScore === 5) {
-    playerButtons.forEach((element) => {
-      element.disabled = true;
-    });
-
-    setTimeout(() => {
-      alert('You lost the game!');
-      playerButtons.forEach((element) => {
-        element.disabled = false;
-      });
-      setupGame();
-    }, 1000);
+    gameResultText = 'You lost the game!';
   }
+
+  resetAllButtonStyles();
+
+  playerButtons.forEach((element) => {
+    element.disabled = true;
+  });
+
+  setTimeout(() => {
+    alert(gameResultText);
+    playerButtons.forEach((element) => {
+      element.disabled = false;
+    });
+    setupGame();
+  }, 1000);
 }
 
 function setupGame() {
@@ -87,27 +85,45 @@ function setupGame() {
   computerScore = 0;
 }
 
+function resetAllButtonStyles() {
+  console.log('resetAllButtonStyles');
+  playerButtons.forEach((playerButton) => {
+    playerButtonStyles.forEach((playerButtonStyle) => {
+      if (playerButtonStyle.id === playerButton.id) {
+        // console.log(`Found ${button.id}`);
+        // console.log(`element.style: ${element.style}`);
+        playerButton.style = playerButtonStyle.style;
+      }
+    });
+  });
+}
+
+function setChosenButtonStyle(button) {
+  button.style.backgroundColor = 'yellow';
+}
+
 function setUpButtons() {
   playerButtons.forEach((button) => {
     button.addEventListener('click', () => {
+      resetAllButtonStyles();
+      setChosenButtonStyle(button);
       playRound(button.id);
       checkForWinner();
     });
   });
 }
 
-function createButtonStyleSave(name, style) {
+function createButtonStyleSave(id, style) {
   return {
-    name,
+    id,
     style,
   };
 }
 
 function saveButtonsStyles() {
+  console.log('saveButtonsStyles');
   playerButtons.forEach((button) => {
-    playerButtonStyles.push(
-      createButtonStyleSave(button.textContent, button.style)
-    );
+    playerButtonStyles.push(createButtonStyleSave(button.id, button.style));
   });
 }
 
@@ -125,6 +141,6 @@ let playerButtonStyles = [];
 saveButtonsStyles();
 
 console.log(playerButtons);
-console.log(playerButtonStyles);
+// console.log(playerButtonStyles);
 
 setupGame();
