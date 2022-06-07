@@ -10,6 +10,11 @@ function playRound(playerSelection) {
   const computerSelection = computerPlayArray();
   console.log(`Computer chose ${computerSelection}`);
 
+  resetAllComputerButtonStyles();
+  setComputerChosenButtonStyle(
+    document.getElementById('computer-' + computerSelection.toLowerCase())
+  );
+
   let result;
   if (playerSelection === 'player-rock') {
     if (computerSelection === 'rock') {
@@ -61,7 +66,8 @@ function checkForWinner() {
     gameResultText = 'You lost the game!';
   }
 
-  resetAllButtonStyles();
+  resetAllPlayerButtonStyles();
+  resetAllComputerButtonStyles();
 
   playerButtons.forEach((element) => {
     element.disabled = true;
@@ -85,8 +91,7 @@ function setupGame() {
   computerScore = 0;
 }
 
-function resetAllButtonStyles() {
-  console.log('resetAllButtonStyles');
+function resetAllPlayerButtonStyles() {
   playerButtons.forEach((playerButton) => {
     playerButtonStyles.forEach((playerButtonStyle) => {
       if (playerButtonStyle.id === playerButton.id) {
@@ -98,15 +103,31 @@ function resetAllButtonStyles() {
   });
 }
 
-function setChosenButtonStyle(button) {
+function resetAllComputerButtonStyles() {
+  computerButtons.forEach((playerButton) => {
+    computerButtonStyles.forEach((playerButtonStyle) => {
+      if (playerButtonStyle.id === playerButton.id) {
+        // console.log(`Found ${button.id}`);
+        // console.log(`element.style: ${element.style}`);
+        playerButton.style = playerButtonStyle.style;
+      }
+    });
+  });
+}
+
+function setPlayerChosenButtonStyle(button) {
+  button.style.backgroundColor = 'rgb(0, 255, 0)';
+}
+
+function setComputerChosenButtonStyle(button) {
   button.style.backgroundColor = 'yellow';
 }
 
 function setUpButtons() {
   playerButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      resetAllButtonStyles();
-      setChosenButtonStyle(button);
+      resetAllPlayerButtonStyles();
+      setPlayerChosenButtonStyle(button);
       playRound(button.id);
       checkForWinner();
     });
@@ -120,10 +141,17 @@ function createButtonStyleSave(id, style) {
   };
 }
 
-function saveButtonsStyles() {
+function savePlayerButtonsStyles() {
   console.log('saveButtonsStyles');
   playerButtons.forEach((button) => {
     playerButtonStyles.push(createButtonStyleSave(button.id, button.style));
+  });
+}
+
+function saveComputerButtonsStyles() {
+  console.log('saveButtonsStyles');
+  computerButtons.forEach((button) => {
+    computerButtonStyles.push(createButtonStyleSave(button.id, button.style));
   });
 }
 
@@ -136,9 +164,12 @@ let computerScore;
 
 const playerButtons = document.querySelectorAll('.playerButton');
 setUpButtons();
-
 let playerButtonStyles = [];
-saveButtonsStyles();
+savePlayerButtonsStyles();
+
+const computerButtons = document.querySelectorAll('.computerButton');
+let computerButtonStyles = [];
+saveComputerButtonsStyles();
 
 console.log(playerButtons);
 // console.log(playerButtonStyles);
