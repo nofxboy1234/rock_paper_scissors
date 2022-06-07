@@ -59,9 +59,10 @@ function checkForWinner() {
       playerButtons.forEach((element) => {
         element.disabled = false;
       });
-      resetScores();
+      resetGame();
     }, 1000);
   }
+
   if (computerScore === 5) {
     playerButtons.forEach((element) => {
       element.disabled = true;
@@ -72,12 +73,12 @@ function checkForWinner() {
       playerButtons.forEach((element) => {
         element.disabled = false;
       });
-      resetScores();
+      resetGame();
     }, 1000);
   }
 }
 
-function resetScores() {
+function resetGame() {
   roundResultsDiv.textContent = 'Choose rock, paper, or scissors';
   playerScoreDiv.textContent = 0;
   computerScoreDiv.textContent = 0;
@@ -86,13 +87,14 @@ function resetScores() {
   computerScore = 0;
 }
 
-const playerButtons = document.querySelectorAll('.playerButton');
-playerButtons.forEach((button) => {
-  button.addEventListener('click', () => {
-    playRound(button.id);
-    checkForWinner();
+function SetUpButtons() {
+  playerButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      playRound(button.id);
+      checkForWinner();
+    });
   });
-});
+}
 
 const roundResultsDiv = document.querySelector('#results');
 const playerScoreDiv = document.querySelector('#player-score');
@@ -101,4 +103,7 @@ const computerScoreDiv = document.querySelector('#computer-score');
 let playerScore;
 let computerScore;
 
-resetScores();
+const playerButtons = document.querySelectorAll('.playerButton');
+SetUpButtons();
+
+resetGame();
