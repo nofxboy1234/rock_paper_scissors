@@ -6,23 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Rock, Paper, Scissors!</title>
     <script src="rps.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <div>Computer</div>
-      <button id="computer-rock" class="computerButton">Rock</button>
-      <button id="computer-paper" class="computerButton">Paper</button>
-      <button id="computer-scissors" class="computerButton">Scissors</button>
-    </div>
+    <div class="container-1">
+      <div class="box-1">
+        <div>Computer</div>
+        <button id="computer-rock" class="computerButton">Rock</button>
+        <button id="computer-paper" class="computerButton">Paper</button>
+        <button id="computer-scissors" class="computerButton">Scissors</button>
+      </div>
 
-    <div>
-      <div>You</div>
-      <button id="player-rock" class="playerButton">Rock</button>
-      <button id="player-paper" class="playerButton">Paper</button>
-      <button id="player-scissors" class="playerButton">Scissors</button>
+      <div class="box-2">
+        <div>You</div>
+        <button id="player-rock" class="playerButton">Rock</button>
+        <button id="player-paper" class="playerButton">Paper</button>
+        <button id="player-scissors" class="playerButton">Scissors</button>
+      </div>
+      <div class="box-3">
+        <div id="results"></div>
+        <div id="player-score"></div>
+        <div id="computer-score"></div>
+      </div>
     </div>
-    <div id="results"></div>
-    <div id="player-score"></div>
-    <div id="computer-score"></div>
   </body>
 </html>
