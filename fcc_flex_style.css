@@ -28,6 +28,7 @@
   font-size: 35px;
   padding: 20px;
   margin: 10px;
+  transition: background-color 0.5s;
 }
 
 .player-container {
@@ -41,7 +42,7 @@
   font-size: 35px;
   padding: 20px;
   margin: 10px;
-  transition: background-color 0.8s;
+  transition: background-color 0.5s;
 }
 
 .player-weapon:hover {

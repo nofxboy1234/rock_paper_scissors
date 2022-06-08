@@ -6,9 +6,9 @@ function computerPlayArray() {
 }
 
 function playRound(playerSelection) {
-  console.log(`You chose ${playerSelection}`);
+  // console.log(`You chose ${playerSelection}`);
   const computerSelection = computerPlayArray();
-  console.log(`Computer chose ${computerSelection}`);
+  // console.log(`Computer chose ${computerSelection}`);
 
   resetAllComputerButtonStyles();
   setComputerChosenButtonStyle(
@@ -48,9 +48,7 @@ function playRound(playerSelection) {
     }
   }
 
-  roundResultsDiv.textContent = result;
-  playerScoreDiv.textContent = playerScore;
-  computerScoreDiv.textContent = computerScore;
+  // removeHeart();
 }
 
 function checkForWinner() {
@@ -102,10 +100,10 @@ function resetAllPlayerButtonStyles() {
 }
 
 function resetAllComputerButtonStyles() {
-  computerButtons.forEach((playerButton) => {
-    computerButtonStyles.forEach((playerButtonStyle) => {
-      if (playerButtonStyle.id === playerButton.id) {
-        playerButton.style = playerButtonStyle.style;
+  computerWeapons.forEach((weapon) => {
+    computerWeaponStyles.forEach((playerWeaponStyle) => {
+      if (playerWeaponStyle.id === weapon.id) {
+        weapon.style = playerWeaponStyle.style;
       }
     });
   });
@@ -118,7 +116,7 @@ function setPlayerChosenButtonStyle(weapon) {
 }
 
 function setComputerChosenButtonStyle(weapon) {
-  weapon.style.backgroundColor = 'yellow';
+  weapon.style.backgroundColor = 'orange';
 }
 
 function setUpButtons() {
@@ -126,7 +124,7 @@ function setUpButtons() {
     weapon.addEventListener('click', () => {
       resetAllPlayerButtonStyles();
       setPlayerChosenButtonStyle(weapon);
-      // playRound(weapon.id);
+      playRound(weapon.id);
       // checkForWinner();
     });
   });
@@ -146,14 +144,10 @@ function savePlayerButtonsStyles() {
 }
 
 function saveComputerButtonsStyles() {
-  computerButtons.forEach((button) => {
-    computerButtonStyles.push(createButtonStyleSave(button.id, button.style));
+  computerWeapons.forEach((button) => {
+    computerWeaponStyles.push(createButtonStyleSave(button.id, button.style));
   });
 }
-
-const roundResultsDiv = document.querySelector('#results');
-const playerScoreDiv = document.querySelector('#player-score');
-const computerScoreDiv = document.querySelector('#computer-score');
 
 let playerScore;
 let computerScore;
@@ -163,8 +157,8 @@ setUpButtons();
 let playerWeaponStyles = [];
 savePlayerButtonsStyles();
 
-const computerButtons = document.querySelectorAll('.computerButton');
-let computerButtonStyles = [];
+const computerWeapons = document.querySelectorAll('.computer-weapon');
+let computerWeaponStyles = [];
 saveComputerButtonsStyles();
 
 // console.log(playerWeapons);
