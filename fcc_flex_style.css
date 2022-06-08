@@ -11,8 +11,16 @@
   height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
+}
+
+.computer-hearts-container {
+  display: flex;
+}
+
+.computer-heart {
+  margin: 10px;
 }
 
 .computer-container {
@@ -23,7 +31,6 @@
   /* background-color: #ff0037; */
   background-color: #00ffea;
   border: 2px solid black;
-
   color: black;
   font-size: 35px;
   padding: 20px;
@@ -48,4 +55,12 @@
 .player-weapon:hover {
   background-color: rgb(9, 255, 0);
   /* background-color: rgb(156, 51, 255); */
+}
+
+.player-hearts-container {
+  display: flex;
+}
+
+.player-heart {
+  margin: 10px;
 }
