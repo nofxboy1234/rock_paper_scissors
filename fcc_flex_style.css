@@ -38,6 +38,11 @@
   transition: background-color 0.5s;
 }
 
+.computer-weapon:hover {
+  cursor: not-allowed;
+  /* background-color: rgb(156, 51, 255); */
+}
+
 .player-container {
   display: flex;
 }
@@ -54,6 +59,7 @@
 
 .player-weapon:hover {
   background-color: rgb(9, 255, 0);
+  cursor: pointer;
   /* background-color: rgb(156, 51, 255); */
 }
 
