@@ -18,37 +18,48 @@ function playRound(playerSelection) {
   let result;
   if (playerSelection === 'player-rock') {
     if (computerSelection === 'rock') {
-      result = 'You tied this round';
+      result = 'tie';
     } else if (computerSelection === 'paper') {
-      result = 'You lost this round';
+      result = 'lose';
       computerScore += 1;
     } else if (computerSelection === 'scissors') {
-      result = 'You won this round';
+      result = 'win';
       playerScore += 1;
     }
   } else if (playerSelection === 'player-paper') {
     if (computerSelection === 'rock') {
-      result = 'You won this round';
+      result = 'win';
       playerScore += 1;
     } else if (computerSelection === 'paper') {
-      result = 'You tied this round';
+      result = 'tie';
     } else if (computerSelection === 'scissors') {
-      result = 'You lost this round';
+      result = 'lose';
       computerScore += 1;
     }
   } else if (playerSelection === 'player-scissors') {
     if (computerSelection === 'rock') {
-      result = 'You lost this round';
+      result = 'lose';
       computerScore += 1;
     } else if (computerSelection === 'paper') {
-      result = 'You won this round';
+      result = 'win';
       playerScore += 1;
     } else if (computerSelection === 'scissors') {
-      result = 'You tied this round';
+      result = 'tie';
     }
   }
 
-  // removeHeart();
+  if (result === 'win') {
+    removeComputerHeart();
+  }
+}
+
+function removeComputerHeart() {
+  heartToRemove = `computer-heart-${5 - playerScore}`;
+  console.log(heartToRemove);
+  // console.log(document.getElementById(heartToRemove));
+  heartElement = document.querySelector(`.${heartToRemove}`);
+  console.log(heartElement);
+  heartElement.style.opacity = '0.1';
 }
 
 function checkForWinner() {
@@ -110,7 +121,7 @@ function resetAllComputerButtonStyles() {
 }
 
 function setPlayerChosenButtonStyle(weapon) {
-  console.log(weapon);
+  // console.log(weapon);
   weapon.style.backgroundColor = 'rgb(9, 255, 0)';
   // weapon.textContent = '!';
 }
@@ -149,8 +160,8 @@ function saveComputerButtonsStyles() {
   });
 }
 
-let playerScore;
-let computerScore;
+let playerScore = 0;
+let computerScore = 0;
 
 const playerWeapons = document.querySelectorAll('.player-weapon');
 setUpButtons();
