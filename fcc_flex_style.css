@@ -29,7 +29,7 @@
 
 .computer-weapon {
   /* background-color: #ff0037; */
-  background-color: #00ffea;
+  background-color: white;
   border: 2px solid black;
   color: black;
   font-size: 35px;
@@ -43,7 +43,7 @@
 }
 
 .player-weapon {
-  background-color: gold;
+  background-color: white;
   border: 2px solid black;
   color: rgb(0, 0, 0);
   font-size: 35px;
