@@ -41,4 +41,9 @@
   font-size: 35px;
   padding: 20px;
   margin: 10px;
+  transition: background-color 0.8s;
+}
+
+.player-weapon:hover {
+  background-color: gold;
 }

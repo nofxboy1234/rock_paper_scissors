@@ -69,13 +69,13 @@ function checkForWinner() {
   resetAllPlayerButtonStyles();
   resetAllComputerButtonStyles();
 
-  playerButtons.forEach((element) => {
+  playerWeapons.forEach((element) => {
     element.disabled = true;
   });
 
   setTimeout(() => {
     alert(gameResultText);
-    playerButtons.forEach((element) => {
+    playerWeapons.forEach((element) => {
       element.disabled = false;
     });
     setupGame();
@@ -92,12 +92,10 @@ function setupGame() {
 }
 
 function resetAllPlayerButtonStyles() {
-  playerButtons.forEach((playerButton) => {
-    playerButtonStyles.forEach((playerButtonStyle) => {
-      if (playerButtonStyle.id === playerButton.id) {
-        // console.log(`Found ${button.id}`);
-        // console.log(`element.style: ${element.style}`);
-        playerButton.style = playerButtonStyle.style;
+  playerWeapons.forEach((weapon) => {
+    playerWeaponStyles.forEach((playerWeaponStyle) => {
+      if (playerWeaponStyle.id === weapon.id) {
+        weapon.style = playerWeaponStyle.style;
       }
     });
   });
@@ -107,29 +105,29 @@ function resetAllComputerButtonStyles() {
   computerButtons.forEach((playerButton) => {
     computerButtonStyles.forEach((playerButtonStyle) => {
       if (playerButtonStyle.id === playerButton.id) {
-        // console.log(`Found ${button.id}`);
-        // console.log(`element.style: ${element.style}`);
         playerButton.style = playerButtonStyle.style;
       }
     });
   });
 }
 
-function setPlayerChosenButtonStyle(button) {
-  button.style.backgroundColor = 'rgb(0, 255, 0)';
+function setPlayerChosenButtonStyle(weapon) {
+  console.log(weapon);
+  weapon.style.backgroundColor = 'gold';
+  // weapon.textContent = '!';
 }
 
-function setComputerChosenButtonStyle(button) {
-  button.style.backgroundColor = 'yellow';
+function setComputerChosenButtonStyle(weapon) {
+  weapon.style.backgroundColor = 'yellow';
 }
 
 function setUpButtons() {
-  playerButtons.forEach((button) => {
-    button.addEventListener('click', () => {
+  playerWeapons.forEach((weapon) => {
+    weapon.addEventListener('click', () => {
       resetAllPlayerButtonStyles();
-      setPlayerChosenButtonStyle(button);
-      playRound(button.id);
-      checkForWinner();
+      setPlayerChosenButtonStyle(weapon);
+      // playRound(weapon.id);
+      // checkForWinner();
     });
   });
 }
@@ -142,14 +140,12 @@ function createButtonStyleSave(id, style) {
 }
 
 function savePlayerButtonsStyles() {
-  console.log('saveButtonsStyles');
-  playerButtons.forEach((button) => {
-    playerButtonStyles.push(createButtonStyleSave(button.id, button.style));
+  playerWeapons.forEach((button) => {
+    playerWeaponStyles.push(createButtonStyleSave(button.id, button.style));
   });
 }
 
 function saveComputerButtonsStyles() {
-  console.log('saveButtonsStyles');
   computerButtons.forEach((button) => {
     computerButtonStyles.push(createButtonStyleSave(button.id, button.style));
   });
@@ -162,16 +158,16 @@ const computerScoreDiv = document.querySelector('#computer-score');
 let playerScore;
 let computerScore;
 
-const playerButtons = document.querySelectorAll('.playerButton');
+const playerWeapons = document.querySelectorAll('.player-weapon');
 setUpButtons();
-let playerButtonStyles = [];
+let playerWeaponStyles = [];
 savePlayerButtonsStyles();
 
 const computerButtons = document.querySelectorAll('.computerButton');
 let computerButtonStyles = [];
 saveComputerButtonsStyles();
 
-console.log(playerButtons);
+// console.log(playerWeapons);
 // console.log(playerButtonStyles);
 
-setupGame();
+// setupGame();
