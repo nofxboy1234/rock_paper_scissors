@@ -10,7 +10,7 @@ function playRound(playerSelection) {
   const computerSelection = computerPlayArray();
   // console.log(`Computer chose ${computerSelection}`);
 
-  resetAllComputerButtonStyles();
+  resetAllComputerWeaponStyles();
   setComputerChosenButtonStyle(
     document.getElementById('computer-' + computerSelection.toLowerCase())
   );
@@ -51,6 +51,18 @@ function playRound(playerSelection) {
   if (result === 'win') {
     removeComputerHeart();
   }
+  if (result === 'lose') {
+    removePlayerHeart();
+  }
+}
+
+function removePlayerHeart() {
+  heartToRemove = `player-heart-${5 - computerScore}`;
+  console.log(heartToRemove);
+  // console.log(document.getElementById(heartToRemove));
+  heartElement = document.querySelector(`.${heartToRemove}`);
+  console.log(heartElement);
+  heartElement.style.opacity = '0.1';
 }
 
 function removeComputerHeart() {
@@ -75,8 +87,8 @@ function checkForWinner() {
     gameResultText = 'You lost the game!';
   }
 
-  resetAllPlayerButtonStyles();
-  resetAllComputerButtonStyles();
+  resetAllPlayerWeaponStyles();
+  resetAllComputerWeaponStyles();
 
   playerWeapons.forEach((element) => {
     element.disabled = true;
@@ -92,15 +104,11 @@ function checkForWinner() {
 }
 
 function setupGame() {
-  roundResultsDiv.textContent = 'Choose rock, paper, or scissors';
-  playerScoreDiv.textContent = 0;
-  computerScoreDiv.textContent = 0;
-
   playerScore = 0;
   computerScore = 0;
 }
 
-function resetAllPlayerButtonStyles() {
+function resetAllPlayerWeaponStyles() {
   playerWeapons.forEach((weapon) => {
     playerWeaponStyles.forEach((playerWeaponStyle) => {
       if (playerWeaponStyle.id === weapon.id) {
@@ -110,7 +118,7 @@ function resetAllPlayerButtonStyles() {
   });
 }
 
-function resetAllComputerButtonStyles() {
+function resetAllComputerWeaponStyles() {
   computerWeapons.forEach((weapon) => {
     computerWeaponStyles.forEach((playerWeaponStyle) => {
       if (playerWeaponStyle.id === weapon.id) {
@@ -133,10 +141,10 @@ function setComputerChosenButtonStyle(weapon) {
 function setUpButtons() {
   playerWeapons.forEach((weapon) => {
     weapon.addEventListener('click', () => {
-      resetAllPlayerButtonStyles();
+      resetAllPlayerWeaponStyles();
       setPlayerChosenButtonStyle(weapon);
       playRound(weapon.id);
-      // checkForWinner();
+      checkForWinner();
     });
   });
 }
@@ -160,8 +168,8 @@ function saveComputerButtonsStyles() {
   });
 }
 
-let playerScore = 0;
-let computerScore = 0;
+let playerScore;
+let computerScore;
 
 const playerWeapons = document.querySelectorAll('.player-weapon');
 setUpButtons();
@@ -175,4 +183,4 @@ saveComputerButtonsStyles();
 // console.log(playerWeapons);
 // console.log(playerButtonStyles);
 
-// setupGame();
+setupGame();
