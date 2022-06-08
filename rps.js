@@ -89,6 +89,7 @@ function checkForWinner() {
 
   resetAllPlayerWeaponStyles();
   resetAllComputerWeaponStyles();
+  resetAllHearts();
 
   playerWeapons.forEach((element) => {
     element.disabled = true;
@@ -157,14 +158,20 @@ function createButtonStyleSave(id, style) {
 }
 
 function savePlayerButtonsStyles() {
-  playerWeapons.forEach((button) => {
-    playerWeaponStyles.push(createButtonStyleSave(button.id, button.style));
+  playerWeapons.forEach((weapon) => {
+    playerWeaponStyles.push(createButtonStyleSave(weapon.id, weapon.style));
   });
 }
 
 function saveComputerButtonsStyles() {
-  computerWeapons.forEach((button) => {
-    computerWeaponStyles.push(createButtonStyleSave(button.id, button.style));
+  computerWeapons.forEach((weapon) => {
+    computerWeaponStyles.push(createButtonStyleSave(weapon.id, weapon.style));
+  });
+}
+
+function resetAllHearts() {
+  allHearts.forEach((heart) => {
+    heart.style.opacity = '1.0';
   });
 }
 
@@ -180,6 +187,7 @@ const computerWeapons = document.querySelectorAll('.computer-weapon');
 let computerWeaponStyles = [];
 saveComputerButtonsStyles();
 
+const allHearts = document.querySelectorAll('.heart');
 // console.log(playerWeapons);
 // console.log(playerButtonStyles);
 
