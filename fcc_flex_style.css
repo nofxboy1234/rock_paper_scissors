@@ -36,7 +36,7 @@
 }
 
 .player-weapon {
-  background-color: #00ff88;
+  background-color: gold;
   border: 2px solid black;
   color: rgb(0, 0, 0);
   font-size: 35px;
@@ -46,5 +46,6 @@
 }
 
 .player-weapon:hover {
-  background-color: gold;
+  background-color: rgb(9, 255, 0);
+  /* background-color: rgb(156, 51, 255); */
 }

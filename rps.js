@@ -111,12 +111,12 @@ function resetAllComputerButtonStyles() {
 
 function setPlayerChosenButtonStyle(weapon) {
   console.log(weapon);
-  weapon.style.backgroundColor = 'gold';
+  weapon.style.backgroundColor = 'rgb(9, 255, 0)';
   // weapon.textContent = '!';
 }
 
 function setComputerChosenButtonStyle(weapon) {
-  weapon.style.backgroundColor = 'orange';
+  weapon.style.backgroundColor = 'rgb(156, 51, 255)';
 }
 
 function setUpButtons() {
