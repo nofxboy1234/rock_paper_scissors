@@ -4,53 +4,41 @@
   box-sizing: border-box;
 }
 
-.container {
+.container-1 {
   background-color: #cacaca;
   padding: 10px;
   margin: 50px;
   height: 600px;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
-  flex-wrap: wrap;
-  align-content: center;
 }
 
-.item {
-  background-color: #ff0037;
-  color: #fff;
+.computer-container {
+  display: flex;
+}
+
+.computer-weapon {
+  /* background-color: #ff0037; */
+  background-color: #00ffea;
+  border: 2px solid black;
+
+  color: black;
   font-size: 35px;
   padding: 20px;
   margin: 10px;
-  /* flex: 1; */
 }
 
-.item-1 {
-  /* order: 3; */
+.player-container {
+  display: flex;
 }
 
-.item-2 {
-  /* order: 4; */
-}
-
-.item-3 {
-  /* height: 150px; */
-  /* order: 0; */
-}
-
-.item-4 {
-  /* font-size: 70px; */
-  /* align-self: stretch; */
-  /* order: 1; */
-}
-
-.item-5 {
-  /* order: 2; */
-  /* flex-basis: 700px;
-  flex-shrink: 1; */
-}
-
-.item-10 {
-  flex: 1;
+.player-weapon {
+  background-color: #00ff88;
+  border: 2px solid black;
+  color: rgb(0, 0, 0);
+  font-size: 35px;
+  padding: 20px;
+  margin: 10px;
 }
