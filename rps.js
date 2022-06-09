@@ -73,19 +73,13 @@ function playRound(playerSelection) {
 
 function removePlayerHeart() {
   heartToRemove = `player-heart-${5 - computerScore}`;
-  // console.log(heartToRemove);
-  // console.log(document.getElementById(heartToRemove));
   heartElement = document.querySelector(`.${heartToRemove}`);
-  // console.log(heartElement);
   heartElement.style.opacity = '0.1';
 }
 
 function removeComputerHeart() {
   heartToRemove = `computer-heart-${5 - playerScore}`;
-  // console.log(heartToRemove);
-  // console.log(document.getElementById(heartToRemove));
   heartElement = document.querySelector(`.${heartToRemove}`);
-  // console.log(heartElement);
   heartElement.style.opacity = '0.1';
 }
 
@@ -155,9 +149,7 @@ function resetAllComputerWeaponStyles() {
 }
 
 function setPlayerChosenButtonStyle(weapon) {
-  // console.log(weapon);
   weapon.style.backgroundColor = 'rgb(9, 255, 0)';
-  // weapon.textContent = '!';
 }
 
 function setComputerChosenButtonStyle(weapon) {
@@ -226,8 +218,6 @@ let computerScore;
 const playerWeapons = document.querySelectorAll('.player-weapon');
 let contextPlayerWeapon;
 setUpButtons();
-// unSetUpButtons();
-// unSetUpButtons();
 let playerWeaponStyles = [];
 savePlayerButtonsStyles();
 
@@ -240,7 +230,5 @@ let messagesStyles = [];
 saveMessagesStyle();
 
 const allHearts = document.querySelectorAll('.heart');
-// console.log(playerWeapons);
-// console.log(playerButtonStyles);
 
 setupGame();
