@@ -98,6 +98,8 @@ function checkForWinner() {
   // setUpButtons();
   setupGame();
 
+  console.log(gameResultText);
+
   printScores();
   // alert(gameResultText);
 
