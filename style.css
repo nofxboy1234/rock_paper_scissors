@@ -5,27 +5,73 @@
 }
 
 .container-1 {
+  background-color: #cacaca;
   padding: 10px;
   margin: 50px;
   height: 600px;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
-.item {
-  border: 1px solid black;
+.computer-hearts-container {
+  display: flex;
+}
+
+.computer-heart {
+  margin: 10px;
+}
+
+.computer-container {
+  display: flex;
+}
+
+.computer-weapon {
+  /* background-color: #ff0037; */
+  background-color: white;
+  border: 2px solid black;
   color: black;
+  font-size: 35px;
+  padding: 20px;
+  margin: 10px;
+  transition: background-color 0.5s;
+}
+
+.computer-weapon:hover {
+  cursor: not-allowed;
+  /* background-color: rgb(156, 51, 255); */
+}
+
+.player-container {
+  display: flex;
+}
+
+.player-weapon {
+  background-color: white;
+  border: 2px solid black;
+  color: rgb(0, 0, 0);
+  font-size: 35px;
+  padding: 20px;
+  margin: 10px;
+  transition: background-color 0.5s;
+}
+
+.player-weapon:hover {
+  background-color: rgb(9, 255, 0);
+  cursor: pointer;
+  /* background-color: rgb(156, 51, 255); */
+}
+
+.player-hearts-container {
+  display: flex;
+}
+
+.player-heart {
+  margin: 10px;
+}
+
+.messages {
+  background-color: rgb(255, 243, 130);
   font-size: 20px;
-  padding: 10px;
 }
-
-/* .heading {
-  border: 1px solid black;
-}
-
-.weapons {
-  border: 1px solid black;
-} */
