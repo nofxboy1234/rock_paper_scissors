@@ -101,7 +101,7 @@ function checkForWinner() {
   console.log(gameResultText);
 
   printScores();
-  // alert(gameResultText);
+  alert(gameResultText);
 
   // setTimeout(() => {
   //   resetAllPlayerWeaponStyles();
