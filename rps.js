@@ -54,23 +54,25 @@ function playRound(playerSelection) {
   if (result === 'lose') {
     removePlayerHeart();
   }
+
+  printScores();
 }
 
 function removePlayerHeart() {
   heartToRemove = `player-heart-${5 - computerScore}`;
-  console.log(heartToRemove);
+  // console.log(heartToRemove);
   // console.log(document.getElementById(heartToRemove));
   heartElement = document.querySelector(`.${heartToRemove}`);
-  console.log(heartElement);
+  // console.log(heartElement);
   heartElement.style.opacity = '0.1';
 }
 
 function removeComputerHeart() {
   heartToRemove = `computer-heart-${5 - playerScore}`;
-  console.log(heartToRemove);
+  // console.log(heartToRemove);
   // console.log(document.getElementById(heartToRemove));
   heartElement = document.querySelector(`.${heartToRemove}`);
-  console.log(heartElement);
+  // console.log(heartElement);
   heartElement.style.opacity = '0.1';
 }
 
@@ -87,21 +89,28 @@ function checkForWinner() {
     gameResultText = 'You lost the game!';
   }
 
+  // unSetUpButtons();
+
   resetAllPlayerWeaponStyles();
   resetAllComputerWeaponStyles();
   resetAllHearts();
 
-  playerWeapons.forEach((element) => {
-    element.disabled = true;
-  });
+  // setUpButtons();
+  setupGame();
 
-  setTimeout(() => {
-    alert(gameResultText);
-    playerWeapons.forEach((element) => {
-      element.disabled = false;
-    });
-    setupGame();
-  }, 1000);
+  printScores();
+  // alert(gameResultText);
+
+  // setTimeout(() => {
+  //   resetAllPlayerWeaponStyles();
+  //   resetAllComputerWeaponStyles();
+  //   resetAllHearts();
+
+  //   setUpButtons();
+  //   setupGame();
+
+  //   alert(gameResultText);
+  // }, 1000);
 }
 
 function setupGame() {
@@ -139,9 +148,25 @@ function setComputerChosenButtonStyle(weapon) {
   weapon.style.backgroundColor = 'rgb(156, 51, 255)';
 }
 
+function printScores() {
+  console.log(`playerScore: ${playerScore}`);
+  console.log(`computerScore: ${computerScore}`);
+}
+
 function setUpButtons() {
   playerWeapons.forEach((weapon) => {
     weapon.addEventListener('click', () => {
+      resetAllPlayerWeaponStyles();
+      setPlayerChosenButtonStyle(weapon);
+      playRound(weapon.id);
+      checkForWinner();
+    });
+  });
+}
+
+function unSetUpButtons() {
+  playerWeapons.forEach((weapon) => {
+    weapon.removeEventListener('click', () => {
       resetAllPlayerWeaponStyles();
       setPlayerChosenButtonStyle(weapon);
       playRound(weapon.id);
