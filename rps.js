@@ -6,17 +6,14 @@ function computerPlayArray() {
 }
 
 function playRound(playerSelection) {
-  // console.log(`You chose ${playerSelection}`);
+  setPlayerChosenButtonStyle(playerSelection);
   const computerSelection = computerPlayArray();
-  // console.log(`Computer chose ${computerSelection}`);
-
-  resetAllComputerWeaponStyles();
   setComputerChosenButtonStyle(
     document.getElementById('computer-' + computerSelection.toLowerCase())
   );
 
   let result;
-  if (playerSelection === 'player-rock') {
+  if (playerSelection.id === 'player-rock') {
     if (computerSelection === 'rock') {
       result = 'tie';
     } else if (computerSelection === 'paper') {
@@ -26,7 +23,7 @@ function playRound(playerSelection) {
       result = 'win';
       playerScore += 1;
     }
-  } else if (playerSelection === 'player-paper') {
+  } else if (playerSelection.id === 'player-paper') {
     if (computerSelection === 'rock') {
       result = 'win';
       playerScore += 1;
@@ -36,7 +33,7 @@ function playRound(playerSelection) {
       result = 'lose';
       computerScore += 1;
     }
-  } else if (playerSelection === 'player-scissors') {
+  } else if (playerSelection.id === 'player-scissors') {
     if (computerSelection === 'rock') {
       result = 'lose';
       computerScore += 1;
@@ -91,13 +88,15 @@ function checkForWinner() {
 
   // unSetUpButtons();
 
-  resetAllPlayerWeaponStyles();
-  resetAllComputerWeaponStyles();
+  // resetAllPlayerWeaponStyles();
+  // resetAllComputerWeaponStyles();
 
   // setUpButtons();
 
-  console.log(gameResultText);
+  resetAllPlayerWeaponStyles();
+  resetAllComputerWeaponStyles();
 
+  console.log(gameResultText);
   alert(gameResultText);
   setupGame();
   printScores();
@@ -159,19 +158,9 @@ function setUpButtons() {
   playerWeapons.forEach((weapon) => {
     weapon.addEventListener('click', () => {
       resetAllPlayerWeaponStyles();
-      setPlayerChosenButtonStyle(weapon);
-      playRound(weapon.id);
-      checkForWinner();
-    });
-  });
-}
+      resetAllComputerWeaponStyles();
 
-function unSetUpButtons() {
-  playerWeapons.forEach((weapon) => {
-    weapon.removeEventListener('click', () => {
-      resetAllPlayerWeaponStyles();
-      setPlayerChosenButtonStyle(weapon);
-      playRound(weapon.id);
+      playRound(weapon);
       checkForWinner();
     });
   });
