@@ -53,8 +53,15 @@ function playRound(playerSelection) {
   }
 
   if (result === 'tie') {
+    messages.style.backgroundColor = 'orange';
     messages.textContent = `You ${result}d the round!`;
   } else {
+    if (result === 'win') {
+      messages.style.backgroundColor = 'rgb(9, 255, 0)';
+    }
+    if (result === 'lose') {
+      messages.style.backgroundColor = 'red';
+    }
     messages.textContent = `You ${result} the round!`;
   }
 
@@ -103,23 +110,21 @@ function checkForWinner() {
 
   // alert(gameResultText);
   messages.textContent = gameResultText;
+  messages.style.backgroundColor = 'cyan';
 
   setupGame();
   printScores();
-  resetAllPlayerWeaponStyles();
-  resetAllComputerWeaponStyles();
-  resetAllHearts();
 
-  // setTimeout(() => {
-  //   resetAllPlayerWeaponStyles();
-  //   resetAllComputerWeaponStyles();
-  //   resetAllHearts();
+  unSetUpButtons();
 
-  //   setUpButtons();
-  //   setupGame();
+  setTimeout(() => {
+    setUpButtons();
+    setupGame();
 
-  //   alert(gameResultText);
-  // }, 1000);
+    resetAllPlayerWeaponStyles();
+    resetAllComputerWeaponStyles();
+    resetAllHearts();
+  }, 3000);
 }
 
 function setupGame() {
@@ -162,15 +167,25 @@ function printScores() {
   console.log(`computerScore: ${computerScore}`);
 }
 
-function setUpButtons() {
-  playerWeapons.forEach((weapon) => {
-    weapon.addEventListener('click', () => {
-      resetAllPlayerWeaponStyles();
-      resetAllComputerWeaponStyles();
+function setButtonFunctions(e) {
+  resetAllPlayerWeaponStyles();
+  resetAllComputerWeaponStyles();
 
-      playRound(weapon);
-      checkForWinner();
-    });
+  playRound(e.target);
+  checkForWinner();
+}
+
+function setUpButtons() {
+  console.log('setUpButtons');
+  playerWeapons.forEach((weapon) => {
+    weapon.addEventListener('click', setButtonFunctions);
+  });
+}
+
+function unSetUpButtons() {
+  console.log('unSetUpButtons');
+  playerWeapons.forEach((weapon) => {
+    weapon.removeEventListener('click', setButtonFunctions);
   });
 }
 
@@ -203,7 +218,10 @@ let playerScore;
 let computerScore;
 
 const playerWeapons = document.querySelectorAll('.player-weapon');
+let contextPlayerWeapon;
 setUpButtons();
+// unSetUpButtons();
+// unSetUpButtons();
 let playerWeaponStyles = [];
 savePlayerButtonsStyles();
 
