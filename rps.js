@@ -71,16 +71,19 @@ function playRound(playerSelection) {
   printScores();
 }
 
-function removePlayerHeart() {
-  heartToRemove = `player-heart-${5 - computerScore}`;
+function removeHeart(heartToRemove) {
   heartElement = document.querySelector(`.${heartToRemove}`);
   heartElement.style.opacity = '0.1';
 }
 
+function removePlayerHeart() {
+  let heartToRemove = `player-heart-${5 - computerScore}`;
+  removeHeart(heartToRemove);
+}
+
 function removeComputerHeart() {
-  heartToRemove = `computer-heart-${5 - playerScore}`;
-  heartElement = document.querySelector(`.${heartToRemove}`);
-  heartElement.style.opacity = '0.1';
+  let heartToRemove = `computer-heart-${5 - playerScore}`;
+  removeHeart(heartToRemove);
 }
 
 function checkForWinner() {
@@ -128,24 +131,33 @@ function resetMessage() {
   messages.textContent = 'Select Rock, Paper, or Scissors below';
 }
 
-function resetAllPlayerWeaponStyles() {
-  playerWeapons.forEach((weapon) => {
-    playerWeaponStyles.forEach((playerWeaponStyle) => {
-      if (playerWeaponStyle.id === weapon.id) {
-        weapon.style = playerWeaponStyle.style;
+function resetAllWeaponStyles(weaponHolder) {
+  let weapons;
+  let weaponStyles;
+  if (weaponHolder === 'player') {
+    weapons = playerWeapons;
+    weaponStyles = playerWeaponStyles;
+  }
+  if (weaponHolder === 'computer') {
+    weapons = computerWeapons;
+    weaponStyles = computerWeaponStyles;
+  }
+
+  weapons.forEach((weapon) => {
+    weaponStyles.forEach((weaponStyle) => {
+      if (weaponStyle.id === weapon.id) {
+        weapon.style = weaponStyle.style;
       }
     });
   });
 }
 
+function resetAllPlayerWeaponStyles() {
+  resetAllWeaponStyles('player');
+}
+
 function resetAllComputerWeaponStyles() {
-  computerWeapons.forEach((weapon) => {
-    computerWeaponStyles.forEach((playerWeaponStyle) => {
-      if (playerWeaponStyle.id === weapon.id) {
-        weapon.style = playerWeaponStyle.style;
-      }
-    });
-  });
+  resetAllWeaponStyles('computer');
 }
 
 function setPlayerChosenButtonStyle(weapon) {
@@ -216,7 +228,6 @@ let playerScore;
 let computerScore;
 
 const playerWeapons = document.querySelectorAll('.player-weapon');
-let contextPlayerWeapon;
 setUpButtons();
 let playerWeaponStyles = [];
 savePlayerButtonsStyles();
