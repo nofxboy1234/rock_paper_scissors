@@ -93,13 +93,12 @@ function checkForWinner() {
 
   // setUpButtons();
 
-  resetAllPlayerWeaponStyles();
-  resetAllComputerWeaponStyles();
-
   console.log(gameResultText);
   alert(gameResultText);
   setupGame();
   printScores();
+  resetAllPlayerWeaponStyles();
+  resetAllComputerWeaponStyles();
   resetAllHearts();
 
   // setTimeout(() => {
