@@ -54,13 +54,16 @@ function playRound(playerSelection) {
 
   if (result === 'tie') {
     messages.style.backgroundColor = 'orange';
+    messages.style.color = 'black';
     messages.textContent = `You ${result}d the round!`;
   } else {
     if (result === 'win') {
       messages.style.backgroundColor = 'rgb(9, 255, 0)';
+      messages.style.color = 'black';
     }
     if (result === 'lose') {
       messages.style.backgroundColor = 'red';
+      messages.style.color = 'white';
     }
     messages.textContent = `You ${result} the round!`;
   }
@@ -99,37 +102,36 @@ function checkForWinner() {
     gameResultText = 'You lost the game!';
   }
 
-  // unSetUpButtons();
-
-  // resetAllPlayerWeaponStyles();
-  // resetAllComputerWeaponStyles();
-
-  // setUpButtons();
-
-  console.log(gameResultText);
-
-  // alert(gameResultText);
   messages.textContent = gameResultText;
   messages.style.backgroundColor = 'cyan';
-
-  setupGame();
-  printScores();
+  messages.style.color = 'black';
 
   unSetUpButtons();
 
   setTimeout(() => {
     setUpButtons();
     setupGame();
+    printScores();
 
     resetAllPlayerWeaponStyles();
     resetAllComputerWeaponStyles();
     resetAllHearts();
-  }, 3000);
+    resetMessage();
+  }, 5000);
 }
 
 function setupGame() {
   playerScore = 0;
   computerScore = 0;
+}
+
+function resetMessage() {
+  messagesStyles.forEach((messageStyle) => {
+    if (messageStyle.id === messages.id) {
+      messages.style = messageStyle.style;
+    }
+  });
+  messages.textContent = 'Select Rock, Paper, or Scissors below';
 }
 
 function resetAllPlayerWeaponStyles() {
@@ -189,7 +191,7 @@ function unSetUpButtons() {
   });
 }
 
-function createButtonStyleSave(id, style) {
+function createStyleSave(id, style) {
   return {
     id,
     style,
@@ -198,13 +200,17 @@ function createButtonStyleSave(id, style) {
 
 function savePlayerButtonsStyles() {
   playerWeapons.forEach((weapon) => {
-    playerWeaponStyles.push(createButtonStyleSave(weapon.id, weapon.style));
+    playerWeaponStyles.push(createStyleSave(weapon.id, weapon.style));
   });
+}
+
+function saveMessagesStyle() {
+  messagesStyles.push(createStyleSave(messages.id, messages.style));
 }
 
 function saveComputerButtonsStyles() {
   computerWeapons.forEach((weapon) => {
-    computerWeaponStyles.push(createButtonStyleSave(weapon.id, weapon.style));
+    computerWeaponStyles.push(createStyleSave(weapon.id, weapon.style));
   });
 }
 
@@ -229,10 +235,12 @@ const computerWeapons = document.querySelectorAll('.computer-weapon');
 let computerWeaponStyles = [];
 saveComputerButtonsStyles();
 
+const messages = document.querySelector('.messages');
+let messagesStyles = [];
+saveMessagesStyle();
+
 const allHearts = document.querySelectorAll('.heart');
 // console.log(playerWeapons);
 // console.log(playerButtonStyles);
-
-const messages = document.querySelector('.messages');
 
 setupGame();
