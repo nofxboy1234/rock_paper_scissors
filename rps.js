@@ -52,6 +52,12 @@ function playRound(playerSelection) {
     removePlayerHeart();
   }
 
+  if (result === 'tie') {
+    messages.textContent = `You ${result}d the round!`;
+  } else {
+    messages.textContent = `You ${result} the round!`;
+  }
+
   printScores();
 }
 
@@ -94,7 +100,10 @@ function checkForWinner() {
   // setUpButtons();
 
   console.log(gameResultText);
-  alert(gameResultText);
+
+  // alert(gameResultText);
+  messages.textContent = gameResultText;
+
   setupGame();
   printScores();
   resetAllPlayerWeaponStyles();
@@ -205,5 +214,7 @@ saveComputerButtonsStyles();
 const allHearts = document.querySelectorAll('.heart');
 // console.log(playerWeapons);
 // console.log(playerButtonStyles);
+
+const messages = document.querySelector('.messages');
 
 setupGame();
